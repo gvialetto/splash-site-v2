@@ -1,0 +1,9 @@
+@import "tailwindcss/base";
+
+.h-68 {
+    height: 17rem;
+}
+
+@import "tailwindcss/components";
+
+@import "tailwindcss/utilities";
