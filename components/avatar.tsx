@@ -4,7 +4,7 @@ import { useColorClassSuffix } from "components/color_provider";
 const Avatar = (): JSX.Element => {
   const { colorClassSuffix, setRandomClassSuffix } = useColorClassSuffix()!;
 
-  const handleEvent = (e: MouseEvent|TouchEvent) => {
+  const handleEvent = (e: MouseEvent | TouchEvent) => {
     e.preventDefault();
     setRandomClassSuffix();
   };

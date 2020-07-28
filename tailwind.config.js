@@ -1,6 +1,6 @@
 module.exports = {
   purge: {
-    content: ['./components/**/*.tsx', './pages/**/*.tsx'],
+    content: ["./components/**/*.tsx", "./pages/**/*.tsx"],
     options: {
       // We generate those dynamically, so we need to whitelist
       // them here.
@@ -18,7 +18,7 @@ module.exports = {
         "text-teal-400",
         "text-orange-400",
       ],
-    }
+    },
   },
   theme: {},
   variants: {},
