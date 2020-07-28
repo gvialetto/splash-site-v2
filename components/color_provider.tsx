@@ -32,7 +32,7 @@ const randomSuffix = (currentSuffix: string): string => {
   return availableSuffixes[randomPos];
 };
 
-export const useColorClassSuffix = () =>
+export const useColorClassSuffix = (): ColorContextType | undefined =>
   React.useContext(colorClassSuffixContext);
 
 export const ColorClassSuffixProvider = ({ children }: Props): JSX.Element => {
