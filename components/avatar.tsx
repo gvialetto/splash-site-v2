@@ -19,7 +19,7 @@ const Avatar = (): JSX.Element => {
       <img
         className={classes}
         onMouseEnter={handleEvent}
-        onTouchStart={handleEvent}
+        onTouchEnd={handleEvent}
         src="images/photo.jpg"
         alt="Personal photo"
       />
