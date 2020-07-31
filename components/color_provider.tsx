@@ -24,9 +24,9 @@ const colorClassSuffixContext = createContext<ColorContextType | undefined>(
   undefined
 );
 
-const randomSuffix = (currentSuffix: string): string => {
+const randomSuffix = (previousSuffixes: string[]): string => {
   const availableSuffixes = colorClassSuffixes.filter(
-    (suffix) => suffix != currentSuffix
+    (suffix) => !previousSuffixes.includes(suffix)
   );
   const randomPos = Math.floor(Math.random() * availableSuffixes.length);
   return availableSuffixes[randomPos];
@@ -36,12 +36,16 @@ export const useColorClassSuffix = (): ColorContextType | undefined =>
   React.useContext(colorClassSuffixContext);
 
 export const ColorClassSuffixProvider = ({ children }: Props): JSX.Element => {
+  const [previousClassSuffixes, setPreviousClassSuffixes] = useState<string[]>([])
   const [colorClassSuffix, setColorClassSuffix] = useState(
     defaultColorClassSuffix
   );
 
   const setRandomClassSuffix = () => {
-    setColorClassSuffix(randomSuffix(colorClassSuffix));
+    previousClassSuffixes.unshift(colorClassSuffix)
+    var newSuffixes = previousClassSuffixes.slice(0, 1)
+    setPreviousClassSuffixes(newSuffixes)
+    setColorClassSuffix(randomSuffix(previousClassSuffixes));
   };
 
   return (
