@@ -12,7 +12,7 @@
     "lint": "eslint . --ext ts --ext tsx --ext js"
   },
   "dependencies": {
-    "next": "^9.5.1",
+    "next": "^9.5.4",
     "react": "16.13.1",
     "react-dom": "16.13.1"
   },
