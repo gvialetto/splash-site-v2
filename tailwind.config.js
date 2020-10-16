@@ -23,4 +23,10 @@ module.exports = {
   theme: {},
   variants: {},
   plugins: [],
+  future: {
+    removeDeprecatedGapUtilities: true,
+    purgeLayersByDefault: true,
+    defaultLineHeights: true,
+    standardFontWeights: true
+  }
 };
