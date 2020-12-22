@@ -10,7 +10,7 @@ const Avatar = (): JSX.Element => {
   };
 
   const classes = `
-    transition ease-in shadow-lg duration-300 mx-auto 
+    transition ease-in shadow-lg duration-300 mx-auto
     rounded-full h-68 p-3 bg-${colorClassSuffix}
   `;
 

@@ -2,11 +2,10 @@ import React, { ReactNode, createContext, useState } from "react";
 
 const colorClassSuffixes = [
   "red-500",
-  "blue-500",
+  "blue-400",
   "green-600",
-  "purple-500",
-  "teal-400",
-  "orange-400",
+  "purple-400",
+  "yellow-500",
 ];
 
 export const defaultColorClassSuffix = colorClassSuffixes[0];
@@ -36,15 +35,17 @@ export const useColorClassSuffix = (): ColorContextType | undefined =>
   React.useContext(colorClassSuffixContext);
 
 export const ColorClassSuffixProvider = ({ children }: Props): JSX.Element => {
-  const [previousClassSuffixes, setPreviousClassSuffixes] = useState<string[]>([])
+  const [previousClassSuffixes, setPreviousClassSuffixes] = useState<string[]>(
+    []
+  );
   const [colorClassSuffix, setColorClassSuffix] = useState(
     defaultColorClassSuffix
   );
 
   const setRandomClassSuffix = () => {
-    previousClassSuffixes.unshift(colorClassSuffix)
-    var newSuffixes = previousClassSuffixes.slice(0, 1)
-    setPreviousClassSuffixes(newSuffixes)
+    previousClassSuffixes.unshift(colorClassSuffix);
+    var newSuffixes = previousClassSuffixes.slice(0, 1);
+    setPreviousClassSuffixes(newSuffixes);
     setColorClassSuffix(randomSuffix(previousClassSuffixes));
   };
 

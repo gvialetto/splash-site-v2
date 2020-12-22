@@ -6,7 +6,7 @@ const Quote = (): JSX.Element => {
   const classes = `transition ease-in duration-300 text-${colorClassSuffix}`;
 
   return (
-    <div className="mt-6 font-sans text-xl leading-relaxed text-center">
+    <div className="mt-6 font-sans text-xl leading-relaxed text-center xl:pl-32 xl:pr-32">
       <blockquote cite="https://en.wikipedia.org/wiki/Competent_man">
         A human being should be able to change a diaper, plan an invasion,
         butcher a hog, conn a ship, design a building, write a sonnet, balance
@@ -16,7 +16,7 @@ const Quote = (): JSX.Element => {
         die gallantly.
         <strong className={classes}> Specialization is for insects</strong>.
       </blockquote>
-      <em className="text-gray-600">
+      <em className="text-gray-500">
         -- &nbsp;
         <a href="http://en.wikipedia.org/wiki/Robert_A._Heinlein">
           Robert A. Heinlein
