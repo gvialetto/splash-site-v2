@@ -12,6 +12,7 @@ const SocialLink = ({ name, url }: SocialLinkProps): JSX.Element => (
     <img
       className="transition-opacity duration-500 h-16 w-16 opacity-25 hover:opacity-100"
       src={`images/${name}.svg`}
+      alt={`${name} profile link`}
     />
   </a>
 );

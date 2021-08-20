@@ -44,7 +44,7 @@ export const ColorClassSuffixProvider = ({ children }: Props): JSX.Element => {
 
   const setRandomClassSuffix = () => {
     previousClassSuffixes.unshift(colorClassSuffix);
-    var newSuffixes = previousClassSuffixes.slice(0, 1);
+    const newSuffixes = previousClassSuffixes.slice(0, 1);
     setPreviousClassSuffixes(newSuffixes);
     setColorClassSuffix(randomSuffix(previousClassSuffixes));
   };
