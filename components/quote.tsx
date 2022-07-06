@@ -1,9 +1,9 @@
-import { useColorClassSuffix } from "components/color_provider";
+import { useColor, getTextColor } from "components/color_provider";
 
 const Quote = (): JSX.Element => {
-  const { colorClassSuffix } = useColorClassSuffix()!;
+  const { color } = useColor()!;
 
-  const classes = `transition ease-in duration-300 text-${colorClassSuffix}`;
+  const classes = `transition ease-in duration-300 ${getTextColor(color)}`;
 
   return (
     <div className="mt-6 font-sans text-xl leading-relaxed text-center xl:pl-32 xl:pr-32">

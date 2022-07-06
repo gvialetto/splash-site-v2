@@ -1,17 +1,17 @@
 import React, { MouseEvent, TouchEvent } from "react";
-import { useColorClassSuffix } from "components/color_provider";
+import { useColor, getBGColor } from "components/color_provider";
 
 const Avatar = (): JSX.Element => {
-  const { colorClassSuffix, setRandomClassSuffix } = useColorClassSuffix()!;
+  const { color, setRandomColor } = useColor()!;
 
   const handleEvent = (e: MouseEvent | TouchEvent) => {
     e.preventDefault();
-    setRandomClassSuffix();
+    setRandomColor();
   };
 
   const classes = `
     transition ease-in shadow-lg duration-300 mx-auto
-    rounded-full h-68 p-3 bg-${colorClassSuffix}
+    rounded-full h-68 p-3 ${getBGColor(color)}
   `;
 
   return (

@@ -1,61 +1,68 @@
 import React, { ReactNode, createContext, useState } from "react";
 
-const colorClassSuffixes = [
-  "red-500",
-  "blue-400",
-  "green-600",
-  "purple-400",
-  "yellow-500",
-];
+type colorClass = [bg: string, text: string];
 
-export const defaultColorClassSuffix = colorClassSuffixes[0];
+const defaultColorClass: colorClass = ["bg-fuchsia-500", "text-fuchsia-500"]
+const colorClasses = new Map<string, colorClass>([
+  ["red", ["bg-red-500", "text-red-500"]],
+  ["blue", ["bg-blue-400", "text-blue-400"]],
+  ["green", ["bg-green-600", "text-green-600"]],
+  ["purple", ["bg-purple-600", "text-purple-600"]],
+  ["yellow", ["bg-yellow-500", "text-yellow-500"]],
+]);
+
+const colorClassWithDefault = (name: string): colorClass => {
+  return colorClasses.get(name) ?? defaultColorClass;
+}
+
+export const getBGColor = (name: string): string => {
+  return colorClassWithDefault(name)[0];
+};
+
+export const getTextColor = (name: string): string => {
+  return colorClassWithDefault(name)[1];
+};
+
+export const [defaultColor] = colorClasses.keys();
 
 type Props = {
   children?: ReactNode;
 };
 
 type ColorContextType = {
-  colorClassSuffix: string;
-  setRandomClassSuffix: () => void;
+  color: string;
+  setRandomColor: () => void;
 };
 
-const colorClassSuffixContext = createContext<ColorContextType | undefined>(
-  undefined
-);
+const colorContext = createContext<ColorContextType | undefined>(undefined);
 
-const randomSuffix = (previousSuffixes: string[]): string => {
-  const availableSuffixes = colorClassSuffixes.filter(
-    (suffix) => !previousSuffixes.includes(suffix)
+const randomSuffix = (previousColors: string[]): string => {
+  const availableColors = [...colorClasses.keys()].filter(
+    (suffix) => !previousColors.includes(suffix)
   );
-  const randomPos = Math.floor(Math.random() * availableSuffixes.length);
-  return availableSuffixes[randomPos];
+  const randomPos = Math.floor(Math.random() * availableColors.length);
+  return availableColors[randomPos];
 };
 
-export const useColorClassSuffix = (): ColorContextType | undefined =>
-  React.useContext(colorClassSuffixContext);
+export const useColor = (): ColorContextType | undefined =>
+  React.useContext(colorContext);
 
-export const ColorClassSuffixProvider = ({ children }: Props): JSX.Element => {
-  const [previousClassSuffixes, setPreviousClassSuffixes] = useState<string[]>(
-    []
-  );
-  const [colorClassSuffix, setColorClassSuffix] = useState(
-    defaultColorClassSuffix
-  );
+export const ColorProvider = ({ children }: Props): JSX.Element => {
+  const [previousColors, setPreviousColors] = useState<string[]>([]);
+  const [color, setColor] = useState(defaultColor);
 
-  const setRandomClassSuffix = () => {
-    previousClassSuffixes.unshift(colorClassSuffix);
-    const newSuffixes = previousClassSuffixes.slice(0, 1);
-    setPreviousClassSuffixes(newSuffixes);
-    setColorClassSuffix(randomSuffix(previousClassSuffixes));
+  const setRandomColor = () => {
+    previousColors.unshift(color);
+    const newSuffixes = previousColors.slice(0, 1);
+    setPreviousColors(newSuffixes);
+    setColor(randomSuffix(previousColors));
   };
 
   return (
-    <colorClassSuffixContext.Provider
-      value={{ colorClassSuffix, setRandomClassSuffix }}
-    >
+    <colorContext.Provider value={{ color, setRandomColor }}>
       {children}
-    </colorClassSuffixContext.Provider>
+    </colorContext.Provider>
   );
 };
 
-export default ColorClassSuffixProvider;
+export default ColorProvider;
